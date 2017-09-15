@@ -19,7 +19,6 @@ k-vim
 
 **PPS**: 一份tmux配置 [k-tmux](https://github.com/wklken/k-tmux)
 
----------------------------------
 
 ---------------------------------
 
@@ -57,6 +56,7 @@ sudo yum groupinstall 'Development Tools'
 sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum install the_silver_searcher
 sudo yum install cmake
+
 
 ### 3. 安装
 
