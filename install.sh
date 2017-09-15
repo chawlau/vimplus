@@ -18,21 +18,31 @@ For example:
     install.sh --help"
 }
 FOR_VIM=true
+FOR_TMUX=true
 FOR_NEOVIM=false
 if [ "$1" != "" ]; then
     case $1 in
         --for-vim)
             FOR_VIM=true
+            FOR_TMUX=false
+            FOR_NEOVIM=false
+            shift
+            ;;
+        --for-tmux)
+            FOR_TMUX=true
+            FOR_VIM=false
             FOR_NEOVIM=false
             shift
             ;;
         --for-neovim)
             FOR_NEOVIM=true
             FOR_VIM=false
+            FOR_TMUX=false
             shift
             ;;
         --for-all)
             FOR_VIM=true
+            FOR_TMUX=true
             FOR_NEOVIM=true
             shift
             ;;
@@ -56,16 +66,24 @@ if $FOR_VIM; then
     for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
     for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles; do [ -L $i ] && unlink $i ; done
 fi
+if $FOR_TMUX; then
+    for i in $HOME/.tmux.conf; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
+    for i in $HOME/.tmux.conf; do [ -L $i ] && unlink $i ; done
+fi
 if $FOR_NEOVIM; then
     for i in $HOME/.config/nvim $HOME/.config/nvim/init.vim; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
     for i in $HOME/.config/nvim/init.vim $HOME/.config/nvim; do [ -L $i ] && unlink $i ; done
 fi
+
 
 echo "Step2: setting up symlinks"
 if $FOR_VIM; then
     lnif $CURRENT_DIR/vimrc $HOME/.vimrc
     lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
     lnif "$CURRENT_DIR/" "$HOME/.vim"
+fi
+if $FOR_TMUX; then
+    lnif $CURRENT_DIR/tmux.conf $HOME/.tmux.conf
 fi
 if $FOR_NEOVIM; then
     lnif "$CURRENT_DIR/" "$HOME/.config/nvim"
