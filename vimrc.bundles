@@ -43,7 +43,7 @@ call plug#begin('~/.vim/bundle')
 " Plug 'Valloric/YouCompleteMe'
 
 " 自动补全单引号，双引号等
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 
 " quick edit
 " 快速注释
@@ -133,10 +133,10 @@ call plug#end()
 " ################### 自动补全 ###################
 " YouCompleteMe {{{
     "youcompleteme  默认tab  s-tab 和自动补全冲突
-    "let g:ycm_key_list_select_completion=['<c-n>']
-    let g:ycm_key_list_select_completion = ['<Down>']
-    "let g:ycm_key_list_previous_completion=['<c-p>']
-    let g:ycm_key_list_previous_completion = ['<Up>']
+    let g:ycm_key_list_select_completion=['<c-j>']
+    " let g:ycm_key_list_select_completion = ['<Down>']
+    let g:ycm_key_list_previous_completion=['<c-k>']
+    " let g:ycm_key_list_previous_completion = ['<Up>']
     let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
     let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
     let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全

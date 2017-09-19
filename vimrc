@@ -73,6 +73,30 @@ set cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4
 set indentexpr=GoogleCppIndent()
 let b:undo_indent = "setl sw< ts< sts< et< tw< wrap< cin< cino< inde<"
 
+
+""""""""""""""""""""""""""""""""""""""""
+" auto completion for pair brace
+""""""""""""""""
+inoremap ( ()<ESC>i
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap { {<CR>}<ESC>kA<CR>
+inoremap } <c-r>=ClosePair('}')<CR>
+" inoremap [ []<ESC>i
+inoremap ] <c-r>=ClosePair(']')<CR>
+" inoremap < <><ESC>i
+inoremap > <c-r>=ClosePair('>')<CR>
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+inoremap ,, <ESC>la
+function ClosePair(char)
+  if getline('.')[col('.') - 1] == a:char
+    return "\<Right>"
+  else
+    return a:char
+  endif
+endfunction
+
+
 "==========================================
 " Initial Plugin 加载插件
 "==========================================
