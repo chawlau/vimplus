@@ -42,8 +42,8 @@ call plug#begin('~/.vim/bundle')
 " 重启 :YcmRestartServer
 " Plug 'Valloric/YouCompleteMe'
 
-" 自动补全单引号，双引号等
-" Plug 'Raimondi/delimitMate'
+" 头文件和实现文件之间跳转
+Plug 'vim-scripts/a.vim'
 
 " quick edit
 " 快速注释
@@ -169,14 +169,11 @@ call plug#end()
 " }}}
 
 
-" delimitMate {{{
-    " for python docstring ",优化输入
-    au FileType python let b:delimitMate_nesting_quotes = ['"']
-    au FileType php let delimitMate_matchpairs = "(:),[:],{:}"
-    " 关闭某些类型文件的自动补全
-    "au FileType mail let b:delimitMate_autoclose = 0
+" a.vim {{{
+    map <leader>a :A<CR>
+    map <leader>as :AS<CR>
+    map <leader>av :AV<CR>
 " }}}
-
 
 " ################### 快速编码 ###################
 
