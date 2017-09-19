@@ -69,7 +69,7 @@ set softtabstop=2
 set expandtab
 set wrap
 set cindent
-set cinoptions=h1,l1,g1,t0,i2,+2,(2,w1,W4
+set cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4
 set indentexpr=GoogleCppIndent()
 let b:undo_indent = "setl sw< ts< sts< et< tw< wrap< cin< cino< inde<"
 
