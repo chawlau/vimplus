@@ -40,7 +40,7 @@ call plug#begin('~/.vim/bundle')
 " 代码自动补全
 " 迄今为止用到的最好的自动VIM自动补全插件
 " 重启 :YcmRestartServer
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 " 头文件和实现文件之间跳转
 Plug 'vim-scripts/a.vim'
@@ -65,7 +65,7 @@ Plug 'vim-scripts/matchit.zip'
 " 文件搜索
 " change to https://github.com/ctrlpvim/ctrlp.vim
 " ctrlp ctrlpfunky
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
+" Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 
 " rainbow_parentheses
 " 括号显示增强
@@ -203,37 +203,37 @@ call plug#end()
 
 " ################### 功能相关 ###################
 
-" ctrlp ctrlpfunky{{{
-    let g:ctrlp_map = '<leader>p'
-    let g:ctrlp_cmd = 'CtrlP'
-    map <leader>f :CtrlPMRU<CR>
-    let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-        \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-        \ }
-    let g:ctrlp_working_path_mode=0
-    let g:ctrlp_match_window_bottom=1
-    let g:ctrlp_max_height=15
-    let g:ctrlp_match_window_reversed=0
-    let g:ctrlp_mruf_max=500
-    let g:ctrlp_follow_symlinks=1
-    " 如果安装了ag, 使用ag
-    " if executable('ag')
-    " " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " " ag is fast enough that CtrlP doesn't need to cache
-    " let g:ctrlp_use_caching = 0
-    " endif
+" " ctrlp ctrlpfunky{{{
+    " let g:ctrlp_map = '<leader>p'
+    " let g:ctrlp_cmd = 'CtrlP'
+    " map <leader>f :CtrlPMRU<CR>
+    " let g:ctrlp_custom_ignore = {
+        " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+        " \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+        " \ }
+    " let g:ctrlp_working_path_mode=0
+    " let g:ctrlp_match_window_bottom=1
+    " let g:ctrlp_max_height=15
+    " let g:ctrlp_match_window_reversed=0
+    " let g:ctrlp_mruf_max=500
+    " let g:ctrlp_follow_symlinks=1
+    " " 如果安装了ag, 使用ag
+    " " if executable('ag')
+    " " " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    " " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " " " ag is fast enough that CtrlP doesn't need to cache
+    " " let g:ctrlp_use_caching = 0
+    " " endif
 
-    " ctrlpfunky
-    " ctrlp插件1 - 不用ctag进行函数快速跳转
-    nnoremap <Leader>fu :CtrlPFunky<Cr>
-    " narrow the list down with a word under cursor
-    nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-    let g:ctrlp_funky_syntax_highlight = 1
+    " " ctrlpfunky
+    " " ctrlp插件1 - 不用ctag进行函数快速跳转
+    " nnoremap <Leader>fu :CtrlPFunky<Cr>
+    " " narrow the list down with a word under cursor
+    " nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+    " let g:ctrlp_funky_syntax_highlight = 1
 
-    let g:ctrlp_extensions = ['funky']
-" }}}
+    " let g:ctrlp_extensions = ['funky']
+" " }}}
 
 
 " ################### 显示增强 ###################

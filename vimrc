@@ -536,3 +536,6 @@ set t_Co=256
 
 " colorscheme solarized
 colorscheme molokai
+augroup filetype
+    autocmd! BufRead,BufNewFile BUILD set filetype=blade
+augroup end
