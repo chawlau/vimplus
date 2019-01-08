@@ -27,12 +27,27 @@ endif
 let b:did_indent = 1
 function! GoogleCppIndent()
     let l:cline_num = line('.')
+
     let l:orig_indent = cindent(l:cline_num)
+
     if l:orig_indent == 0 | return 0 | endif
+
     let l:pline_num = prevnonblank(l:cline_num - 1)
     let l:pline = getline(l:pline_num)
     if l:pline =~# '^\s*template' | return l:pline_indent | endif
+
+    " TODO: I don't know to correct it:
+    " namespace test {
+    " void
+    " ....<-- invalid cindent pos
+    "
+    " void test() {
+    " }
+    "
+    " void
+    " <-- cindent pos
     if l:orig_indent != &shiftwidth | return l:orig_indent | endif
+
     let l:in_comment = 0
     let l:pline_num = prevnonblank(l:cline_num - 1)
     while l:pline_num > -1
@@ -61,41 +76,20 @@ function! GoogleCppIndent()
 
         let l:pline_num = prevnonblank(l:pline_num - 1)
     endwhile
+
     return l:orig_indent
 endfunction
+
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set expandtab
+set textwidth=80
 set wrap
 set cindent
 set cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4
 set indentexpr=GoogleCppIndent()
 let b:undo_indent = "setl sw< ts< sts< et< tw< wrap< cin< cino< inde<"
-
-
-""""""""""""""""""""""""""""""""""""""""
-" auto completion for pair brace
-""""""""""""""""
-inoremap ( ()<ESC>i
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap { {<CR>}<ESC>kA<CR>
-inoremap } <c-r>=ClosePair('}')<CR>
-" inoremap [ []<ESC>i
-inoremap ] <c-r>=ClosePair(']')<CR>
-" inoremap < <><ESC>i
-inoremap > <c-r>=ClosePair('>')<CR>
-inoremap " ""<ESC>i
-inoremap ' ''<ESC>i
-inoremap ,, <ESC>la
-function ClosePair(char)
-  if getline('.')[col('.') - 1] == a:char
-    return "\<Right>"
-  else
-    return a:char
-  endif
-endfunction
-
 
 "==========================================
 " Initial Plugin 加载插件
@@ -163,7 +157,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 " 鼠标暂不启用, 键盘党....
 set mouse-=a
 " 启用鼠标
-" set mouse=a
+"set mouse=a
 " Hide the mouse cursor while typing
 " set mousehide
 
@@ -386,8 +380,8 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 
 " 分屏窗口移动, Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
@@ -410,7 +404,7 @@ nnoremap <silent> <Leader>z :ZoomToggle<CR>
 
 " Go to home and end using capitalized directions
 noremap H ^
-noremap L $
+noremap L A
 
 
 " Map ; to : and save a million keystrokes 用于快速进入命令行
@@ -418,8 +412,8 @@ noremap L $
 
 
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
+"cnoremap <C-j> <t_kd>
+"cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
@@ -533,9 +527,12 @@ endif
 " theme主题
 set background=dark
 set t_Co=256
-
-" colorscheme solarized
 colorscheme molokai
-augroup filetype
-    autocmd! BufRead,BufNewFile BUILD set filetype=blade
-augroup end
+
+
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+nmap <c-n> :%s/\s\+$//ge<cr>
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap { {}<LEFT>

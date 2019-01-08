@@ -1,0 +1,1 @@
+/home/liuchao/typhoon-blade/vim/syntax/blade.vim
