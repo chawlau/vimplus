@@ -387,5 +387,7 @@ call plug#end()
 " json {{{
     let g:vim_json_syntax_conceal = 0
 " }}}
+let g:NERDTreeWinSize=20
+let g:tagbar_width=30
 
 "------------------------------------------- end of configs --------------------------------------------
